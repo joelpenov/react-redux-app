@@ -1,4 +1,4 @@
-import { render, react } from "react-dom";
+import { render } from "react-dom";
 import React from "react";
 
 function Sample() {
