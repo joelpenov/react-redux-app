@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HomeComponent = (settings, props) => {
-  settings && console.log(props.appState);
+const HomeComponent = () => {
   return (
     <div className="jumbotron">
       <h1 id="sample877" className="display-4">
