@@ -81,3 +81,11 @@ body {
     font-size: 120px;
   }
 }
+
+/*
+Till here about page
+*/
+
+.navbar-nav > a.active {
+  font-weight: bold;
+}

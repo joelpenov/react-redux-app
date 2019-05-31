@@ -6,7 +6,7 @@ const NavBarComponent = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         penov.dev
       </a>
       <button
@@ -29,6 +29,13 @@ const NavBarComponent = () => {
             exact
           >
             Home
+          </NavLink>
+          <NavLink
+            className="nav-item nav-link"
+            activeClassName={activeclassName}
+            to="/courses"
+          >
+            Courses
           </NavLink>
           <NavLink
             className="nav-item nav-link"
