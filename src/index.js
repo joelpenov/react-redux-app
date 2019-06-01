@@ -11,10 +11,10 @@ import "./index.css";
 const store = configureStore();
 
 render(
-  <Router>
-    <Provider store={store}>
+  <Provider store={store}>
+    <Router>
       <AppComponent />
-    </Provider>
-  </Router>,
+    </Router>
+  </Provider>,
   document.getElementById("react-app")
 );
