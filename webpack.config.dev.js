@@ -23,6 +23,9 @@ module.exports = {
     https: false
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env.API_URL": JSON.stringify("https://joe.com.do:58856")
+    }),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       favicon: "./favicon.png"

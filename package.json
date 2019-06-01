@@ -2,7 +2,10 @@
   "name": "redux-react-app",
   "description": "Redux over React test application",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.dev.js --port 1985"
+    "start": "run-p start:dev start:api",
+    "start:api": "node src/fakeApi/apiServer.js",
+    "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 1985",
+    "prestart:api": "node src/fakeApi/createMockDb.js"
   },
   "dependencies": {
     "bootstrap": "4.3.1",
