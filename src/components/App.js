@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import HomeComponent from "./home/Home";
 import AboutComponent from "./about/About";
-import NavBarComponent from "./Header/NavBar";
+import NavBarComponent from "./header/NavBar";
 import NotFoundComponent from "./error/NotFound";
 import CoursesComponent from "./course/CoursesComponent";
 
