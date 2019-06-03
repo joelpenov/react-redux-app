@@ -1,27 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { loadCourses } from "../../redux/actions/courseActions";
 import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 
-class ManageCourseComponent extends React.Component {
-  componentDidMount() {
+function ManageCourseComponent({ authors, courses, loadAuthors, loadCourses }) {
+  useEffect(() => {
     const necessaryLoad = [];
-    const { loadAuthors, loadCourses } = this.props;
 
-    if (this.props.authors.length === 0) necessaryLoad.push(loadAuthors());
-    if (this.props.courses.length === 0) necessaryLoad.push(loadCourses());
+    if (authors.length === 0) necessaryLoad.push(loadAuthors());
+    if (courses.length === 0) necessaryLoad.push(loadCourses());
 
     if (necessaryLoad.length === 0) return;
 
     Promise.all(necessaryLoad).catch(error => {
       throw error;
     });
-  }
+  });
 
-  render() {
-    return <h1>ManageCourseComponent</h1>;
-  }
+  return <h1>ManageCourseComponent</h1>;
 }
 
 ManageCourseComponent.propTypes = {
