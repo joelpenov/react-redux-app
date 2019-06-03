@@ -17,8 +17,8 @@ const HomeComponent = () => {
         within the larger container.
       </p>
       <p className="lead">
-        <Link to="about" className="btn btn-primary btn-lg">
-          About
+        <Link to="courses" className="btn btn-primary btn-lg">
+          Courses
         </Link>
       </p>
     </div>
