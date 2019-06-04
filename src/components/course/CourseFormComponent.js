@@ -3,7 +3,14 @@ import PropTypes from "prop-types";
 import InputComponent from "../htmlElements/InputComponent";
 import SelectComponent from "../htmlElements/SelectComponent";
 
-function CourseFormComponent({ course, authors, saving, errors, onChange }) {
+function CourseFormComponent({
+  course,
+  authors,
+  saving,
+  errors,
+  onChange,
+  handleOnSubmit
+}) {
   const nameInputProps = {
     name: "title",
     label: "Course Name",
@@ -36,7 +43,7 @@ function CourseFormComponent({ course, authors, saving, errors, onChange }) {
   return (
     <div>
       <h1>{course.id ? "Edit " : "Add "} course</h1>
-      <form>
+      <form onSubmit={handleOnSubmit}>
         <InputComponent value={course.title} {...nameInputProps} />
         <SelectComponent value={course.authorId} {...selectProps} />
         <InputComponent value={course.category} {...categoryProps} />

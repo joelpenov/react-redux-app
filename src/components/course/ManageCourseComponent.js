@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { loadCourses } from "../../redux/actions/courseActions";
+import { loadCourses, saveCourse } from "../../redux/actions/courseActions";
 import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseFormComponent from "./CourseFormComponent";
@@ -17,6 +17,7 @@ function ManageCourseComponent({
   courses,
   loadAuthors,
   loadCourses,
+  saveCourse,
   ...noDestructuedProps
 }) {
   const [course, setCourse] = useState({ ...noDestructuedProps.course });
@@ -35,6 +36,11 @@ function ManageCourseComponent({
     });
   }, []);
 
+  function handleOnSubmit(event) {
+    event.preventDefault();
+    saveCourse(course);
+  }
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -51,6 +57,7 @@ function ManageCourseComponent({
       authors={authors}
       onChange={handleChange}
       errors={errors}
+      handleOnSubmit={handleOnSubmit}
     />
   );
 }
@@ -60,7 +67,8 @@ ManageCourseComponent.propTypes = {
   courses: PropTypes.array.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   loadCourses: PropTypes.func.isRequired,
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  saveCourse: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
@@ -73,7 +81,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToActions = {
   loadAuthors: loadAuthors,
-  loadCourses: loadCourses
+  loadCourses: loadCourses,
+  saveCourse: saveCourse
 };
 
 export default connect(
