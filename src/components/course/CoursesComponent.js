@@ -9,11 +9,17 @@ import CourseListComponent from "./CourseListComponent";
 
 class CoursesComponent extends React.Component {
   componentDidMount() {
-    Promise.all([
-      this.props.actions.loadAuthors(),
-      this.props.actions.loadCourses()
-    ]).catch(error => {
-      console.log("Error loading data ", error);
+    const necessaryLoad = [];
+
+    if (this.props.authors.length === 0)
+      necessaryLoad.push(this.props.actions.loadAuthors());
+    if (this.props.courses.length === 0)
+      necessaryLoad.push(this.props.actions.loadCourses());
+
+    if (necessaryLoad.length === 0) return;
+
+    Promise.all(necessaryLoad).catch(error => {
+      throw error;
     });
   }
 

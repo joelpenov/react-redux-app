@@ -7,7 +7,7 @@ const NavBarComponent = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="/">
-        penov.dev
+        joeldev.net
       </a>
       <button
         className="navbar-toggler"
