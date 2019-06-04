@@ -3,25 +3,21 @@ import PropTypes from "prop-types";
 import InputComponent from "../htmlElements/InputComponent";
 import SelectComponent from "../htmlElements/SelectComponent";
 
-function CourseFormComponent({ course, authors }) {
-  const onChangeCourseName = e => {};
-
+function CourseFormComponent({ course, authors, saving, errors, onChange }) {
   const nameInputProps = {
-    name: "courseName",
+    name: "title",
     label: "Course Name",
-    onChange: onChangeCourseName,
+    onChange: onChange,
     placeholder: "Course Name",
-    value: "",
-    error: ""
+    error: errors.title || ""
   };
 
   const categoryProps = {
-    name: "courseCategory",
+    name: "category",
     label: "Category",
-    onChange: onChangeCourseName,
+    onChange: onChange,
     placeholder: "Category",
-    value: "",
-    error: "",
+    error: errors.category || "",
     inputType: "text"
   };
 
@@ -31,20 +27,22 @@ function CourseFormComponent({ course, authors }) {
 
   const selectProps = {
     options: mappedAuthors,
-    onChange: () => {},
+    onChange: onChange,
     label: "Author",
-    name: "Author",
-    value: 0,
-    error: ""
+    name: "authorId",
+    error: errors.author || ""
   };
 
   return (
     <div>
       <h1>{course.id ? "Edit " : "Add "} course</h1>
       <form>
-        <InputComponent {...nameInputProps} />
-        <SelectComponent {...selectProps} />
-        <InputComponent {...categoryProps} />
+        <InputComponent value={course.title} {...nameInputProps} />
+        <SelectComponent value={course.authorId} {...selectProps} />
+        <InputComponent value={course.category} {...categoryProps} />
+        <button type="submit" disabled={saving} className="btn btn-primary">
+          {saving ? "Saving..." : "Save"}
+        </button>
       </form>
     </div>
   );

@@ -19,7 +19,8 @@ function SelectComponent({
           onChange={onChange}
           className="form-control"
           id={name}
-          value={value}
+          name={name}
+          value={value || ""}
         >
           <option key={-1} value="">
             {caption}

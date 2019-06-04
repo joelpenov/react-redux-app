@@ -35,7 +35,24 @@ function ManageCourseComponent({
     });
   }, []);
 
-  return <CourseFormComponent course={course} authors={authors} />;
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    const newCourse = {
+      ...course,
+      [name]: name === "authorId" ? parseInt(value, 10) : value
+    };
+
+    setCourse(newCourse);
+  }
+  return (
+    <CourseFormComponent
+      course={course}
+      authors={authors}
+      onChange={handleChange}
+      errors={errors}
+    />
+  );
 }
 
 ManageCourseComponent.propTypes = {

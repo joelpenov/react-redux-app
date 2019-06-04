@@ -20,6 +20,7 @@ function InputComponent({
           type={inputType}
           className={inputClasses}
           id={name}
+          name={name}
           placeholder={placeholder}
           required
           onChange={onChange}
