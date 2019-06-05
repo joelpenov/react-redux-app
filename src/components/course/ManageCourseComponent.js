@@ -28,14 +28,18 @@ function ManageCourseComponent({
     const necessaryLoad = [];
 
     if (authors.length === 0) necessaryLoad.push(loadAuthors());
-    if (courses.length === 0) necessaryLoad.push(loadCourses());
+    if (courses.length === 0) {
+      necessaryLoad.push(loadCourses());
+    } else {
+      setCourse({ ...noDestructuedProps.course });
+    }
 
     if (necessaryLoad.length === 0) return;
 
     Promise.all(necessaryLoad).catch(error => {
       throw error;
     });
-  }, []);
+  }, [noDestructuedProps.course]);
 
   function handleOnSubmit(event) {
     setSaving(true);
@@ -84,11 +88,21 @@ ManageCourseComponent.propTypes = {
   saveCourse: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state) {
+function getCourseBySlug(courses, slug) {
+  return courses.find(c => c.slug === slug) || null;
+}
+
+function mapStateToProps(state, ownProps) {
+  const slug = ownProps.match.params.slug;
+  const course =
+    slug && state.courses.length > 0
+      ? getCourseBySlug(state.courses, slug)
+      : newCourse;
+
   return {
     authors: state.authors,
     courses: state.courses,
-    course: newCourse
+    course: course
   };
 }
 

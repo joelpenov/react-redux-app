@@ -13,7 +13,7 @@ const AppComponent = () => (
     <Switch>
       <Route exact path="/" component={HomeComponent} />
       <Route
-        path="/course/:a([A-Za-z0-9-_]+)"
+        path="/course/:slug([A-Za-z0-9-_]+)"
         component={ManageCourseComponent}
       />
       <Route path="/course" component={ManageCourseComponent} />

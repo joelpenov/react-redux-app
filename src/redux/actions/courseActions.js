@@ -3,7 +3,6 @@ import * as courseApi from "../../api/courseApi";
 
 export function createCourseSuccess(course) {
   let result = { type: actionTypes.CREATE_COURSE_SUCCESS, course: course };
-  debugger;
   return result;
 }
 
