@@ -5,6 +5,7 @@ import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseFormComponent from "./CourseFormComponent";
 import SpinnerComponent from "../ui/SpinnerComponent";
+import { toast } from "react-toastify";
 
 const newCourse = {
   id: null,
@@ -46,6 +47,9 @@ function ManageCourseComponent({
     setSaving(true);
     saveCourse(course)
       .then(() => {
+        toast("Course saved successfully.", {
+          position: toast.POSITION.BOTTOM_CENTER
+        });
         setSaving(false);
         noDestructuedProps.history.push("/courses");
       })

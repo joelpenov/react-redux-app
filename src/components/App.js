@@ -6,6 +6,9 @@ import NavBarComponent from "./header/NavBar";
 import NotFoundComponent from "./error/NotFound";
 import CoursesComponent from "./course/CoursesComponent";
 import ManageCourseComponent from "./course/ManageCourseComponent";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.min.css";
 
 const AppComponent = () => (
   <div className="container-fluid">
@@ -21,6 +24,7 @@ const AppComponent = () => (
       <Route path="/about" component={AboutComponent} />
       <Route path="*" component={NotFoundComponent} />
     </Switch>
+    <ToastContainer autoClose={3000} hideProgressBar />
   </div>
 );
 
