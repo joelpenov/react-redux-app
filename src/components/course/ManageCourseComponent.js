@@ -37,8 +37,8 @@ function ManageCourseComponent({
   }, []);
 
   function handleOnSubmit(event) {
-    event.preventDefault();
     saveCourse(course);
+    event.preventDefault();
   }
 
   function handleChange(event) {
@@ -52,13 +52,15 @@ function ManageCourseComponent({
     setCourse(newCourse);
   }
   return (
-    <CourseFormComponent
-      course={course}
-      authors={authors}
-      onChange={handleChange}
-      errors={errors}
-      handleOnSubmit={handleOnSubmit}
-    />
+    <div>
+      <CourseFormComponent
+        course={course}
+        authors={authors}
+        onChange={handleChange}
+        errors={errors}
+        handleOnSubmit={handleOnSubmit}
+      />
+    </div>
   );
 }
 

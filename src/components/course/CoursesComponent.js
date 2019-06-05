@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import { bindActionCreators } from "redux";
+import { Redirect } from "react-router-dom";
 
 import CourseListComponent from "./CourseListComponent";
 
