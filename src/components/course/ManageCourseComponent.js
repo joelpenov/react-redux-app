@@ -4,6 +4,7 @@ import { loadCourses, saveCourse } from "../../redux/actions/courseActions";
 import { loadAuthors } from "../../redux/actions/authorActions";
 import PropTypes from "prop-types";
 import CourseFormComponent from "./CourseFormComponent";
+import SpinnerComponent from "../ui/SpinnerComponent";
 
 const newCourse = {
   id: null,
@@ -65,16 +66,21 @@ function ManageCourseComponent({
 
     setCourse(newCourse);
   }
+
+  const { loading } = noDestructuedProps;
   return (
     <div>
-      <CourseFormComponent
-        saving={saving}
-        course={course}
-        authors={authors}
-        onChange={handleChange}
-        errors={errors}
-        handleOnSubmit={handleOnSubmit}
-      />
+      {loading && <SpinnerComponent />}
+      {!loading && (
+        <CourseFormComponent
+          saving={saving}
+          course={course}
+          authors={authors}
+          onChange={handleChange}
+          errors={errors}
+          handleOnSubmit={handleOnSubmit}
+        />
+      )}
     </div>
   );
 }
@@ -85,7 +91,8 @@ ManageCourseComponent.propTypes = {
   loadAuthors: PropTypes.func.isRequired,
   loadCourses: PropTypes.func.isRequired,
   course: PropTypes.object.isRequired,
-  saveCourse: PropTypes.func.isRequired
+  saveCourse: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 function getCourseBySlug(courses, slug) {
@@ -102,7 +109,8 @@ function mapStateToProps(state, ownProps) {
   return {
     authors: state.authors,
     courses: state.courses,
-    course: course
+    course: course,
+    loading: state.apiCallsInProgress > 0
   };
 }
 

@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import { bindActionCreators } from "redux";
-import { Redirect } from "react-router-dom";
 
 import CourseListComponent from "./CourseListComponent";
 
@@ -18,7 +17,6 @@ class CoursesComponent extends React.Component {
       necessaryLoad.push(this.props.actions.loadCourses());
 
     if (necessaryLoad.length === 0) return;
-
     Promise.all(necessaryLoad).catch(error => {
       throw error;
     });
@@ -27,21 +25,11 @@ class CoursesComponent extends React.Component {
   render() {
     return (
       <div>
-        <div className="row">
-          <div className="list-group">
-            <a
-              href="#"
-              className="list-group-item list-group-item-action active"
-            >
-              Courses
-            </a>
-            <CourseListComponent
-              courses={this.props.courses}
-              authors={this.props.authors}
-            />
-          </div>
-          <ol />
-        </div>
+        <CourseListComponent
+          courses={this.props.courses}
+          authors={this.props.authors}
+          loading={this.props.loading}
+        />
       </div>
     );
   }
@@ -50,7 +38,8 @@ class CoursesComponent extends React.Component {
 CoursesComponent.propTypes = {
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
@@ -64,7 +53,8 @@ function mapStateToProps(state) {
               authorName: state.authors.find(a => a.id === course.authorId).name
             };
           }),
-    authors: state.authors
+    authors: state.authors,
+    loading: state.apiCallsInProgress > 0
   };
 }
 
