@@ -22,6 +22,7 @@ function ManageCourseComponent({
 }) {
   const [course, setCourse] = useState({ ...noDestructuedProps.course });
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const necessaryLoad = [];
@@ -37,7 +38,16 @@ function ManageCourseComponent({
   }, []);
 
   function handleOnSubmit(event) {
-    saveCourse(course);
+    setSaving(true);
+    saveCourse(course)
+      .then(() => {
+        setSaving(false);
+        noDestructuedProps.history.push("/courses");
+      })
+      .catch(error => {
+        setSaving(false);
+        throw error;
+      });
     event.preventDefault();
   }
 
@@ -54,6 +64,7 @@ function ManageCourseComponent({
   return (
     <div>
       <CourseFormComponent
+        saving={saving}
         course={course}
         authors={authors}
         onChange={handleChange}

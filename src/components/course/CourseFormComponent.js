@@ -57,6 +57,10 @@ function CourseFormComponent({
 
 CourseFormComponent.propTypes = {
   authors: PropTypes.array,
+  saving: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  handleOnSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
   course: PropTypes.shape({
     title: PropTypes.string,
     id: PropTypes.number,
