@@ -2,8 +2,7 @@ import actionTypes from "./actionTypes";
 import * as courseApi from "../../api/courseApi";
 
 export function createCourseSuccess(course) {
-  let result = { type: actionTypes.CREATE_COURSE_SUCCESS, course: course };
-  return result;
+  return { type: actionTypes.CREATE_COURSE_SUCCESS, course: course };
 }
 
 export function updateCourseSuccess(course) {
@@ -29,8 +28,6 @@ export function loadCourses() {
 
 export function saveCourse(course) {
   return function(dispatch, getState) {
-    console.log(typeof getState);
-
     return courseApi.saveCourse(course).then(savedCourse => {
       return course.id
         ? dispatch(updateCourseSuccess(savedCourse))
