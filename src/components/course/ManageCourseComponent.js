@@ -43,21 +43,36 @@ function ManageCourseComponent({
     });
   }, [noDestructuedProps.course]);
 
+  function isValidForm() {
+    const { title, category, authorId } = course;
+    let errors = {};
+
+    if (!title) errors.title = "Title is required.";
+    if (!authorId) errors.authorId = "Author is required.";
+    if (!category) errors.category = "Category is required.";
+
+    setErrors(errors);
+
+    Object.keys(errors).length === 0;
+  }
+
   function handleOnSubmit(event) {
+    event.preventDefault();
+
+    if (!isValidForm()) return;
+
     setSaving(true);
     saveCourse(course)
       .then(() => {
-        toast("Course saved successfully.", {
-          position: toast.POSITION.BOTTOM_CENTER
-        });
+        toast("Course saved successfully.");
         setSaving(false);
         noDestructuedProps.history.push("/courses");
       })
       .catch(error => {
+        setErrors({ server: error });
         setSaving(false);
         throw error;
       });
-    event.preventDefault();
   }
 
   function handleChange(event) {
@@ -69,6 +84,7 @@ function ManageCourseComponent({
     };
 
     setCourse(newCourse);
+    isValidForm();
   }
 
   const { loading } = noDestructuedProps;

@@ -22,7 +22,6 @@ function InputComponent({
           id={name}
           name={name}
           placeholder={placeholder}
-          required
           onChange={onChange}
           value={value}
         />

@@ -11,13 +11,15 @@ function SelectComponent({
   options
 }) {
   caption = caption ? caption : "-Please select one-";
+  let inputClasses = "form-control ";
+  inputClasses = error ? inputClasses + " is-invalid" : inputClasses;
   return (
     <div className="form-group">
       <div className="col-md-6 mb-3">
         <label htmlFor={name}>{label}</label>
         <select
           onChange={onChange}
-          className="form-control"
+          className={inputClasses}
           id={name}
           name={name}
           value={value || ""}

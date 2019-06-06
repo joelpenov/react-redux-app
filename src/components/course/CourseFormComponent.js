@@ -37,11 +37,13 @@ function CourseFormComponent({
     onChange: onChange,
     label: "Author",
     name: "authorId",
-    error: errors.author || ""
+    error: errors.authorId || ""
   };
-
   return (
     <div>
+      {errors.server && errors.server.message && (
+        <div className="alert alert-danger">{errors.server.message}</div>
+      )}
       <h1>{course.id ? "Edit " : "Add "} course</h1>
       <form onSubmit={handleOnSubmit}>
         <InputComponent value={course.title} {...nameInputProps} />

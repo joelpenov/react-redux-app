@@ -1,6 +1,9 @@
 import actionTypes from "./actionTypes";
 import * as courseApi from "../../api/courseApi";
-import beingApiCallAction from "./apiCallsInProgressAction";
+import {
+  beginApiCallAction,
+  failedApiCallAction
+} from "./apiCallsInProgressAction";
 
 export function createCourseSuccess(course) {
   return { type: actionTypes.CREATE_COURSE_SUCCESS, course: course };
@@ -16,25 +19,32 @@ export function loadCoursesSuccess(courses) {
 
 export function loadCourses() {
   return function(dispatch) {
+    dispatch(beginApiCallAction());
     return courseApi
       .getCourses()
       .then(courses => {
-        dispatch(beingApiCallAction());
-        return dispatch(loadCoursesSuccess(courses));
+        dispatch(loadCoursesSuccess(courses));
       })
       .catch(errr => {
+        dispatch(failedApiCallAction());
         throw errr;
       });
   };
 }
 
 export function saveCourse(course) {
-  return function(dispatch, getState) {
-    dispatch(beingApiCallAction());
-    return courseApi.saveCourse(course).then(savedCourse => {
-      return course.id
-        ? dispatch(updateCourseSuccess(savedCourse))
-        : dispatch(createCourseSuccess(savedCourse));
-    });
+  return function(dispatch) {
+    dispatch(beginApiCallAction());
+    return courseApi
+      .saveCourse(course)
+      .then(savedCourse => {
+        course.id
+          ? dispatch(updateCourseSuccess(savedCourse))
+          : dispatch(createCourseSuccess(savedCourse));
+      })
+      .catch(error => {
+        dispatch(failedApiCallAction());
+        throw error;
+      });
   };
 }
