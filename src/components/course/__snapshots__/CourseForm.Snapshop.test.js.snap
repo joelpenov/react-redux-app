@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should set button text to 'Save' when saving is false 1`] = `
+<div>
+  <h1>
+    Edit 
+     course
+  </h1>
+  <form
+    onSubmit={[MockFunction]}
+  >
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-md-6 mb-3"
+      >
+        <label
+          htmlFor="title"
+        >
+          Course Name
+        </label>
+        <input
+          className="form-control "
+          id="title"
+          name="title"
+          onChange={[MockFunction]}
+          placeholder="Course Name"
+          type="text"
+          value="React: The Big Picture"
+        />
+        
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-md-6 mb-3"
+      >
+        <label
+          htmlFor="authorId"
+        >
+          Author
+        </label>
+        <select
+          className="form-control "
+          id="authorId"
+          name="authorId"
+          onChange={[MockFunction]}
+          value={1}
+        >
+          <option
+            value=""
+          >
+            -Please select one-
+          </option>
+          <option
+            value={1}
+          >
+            Cory House
+          </option>
+          <option
+            value={2}
+          >
+            Scott Allen
+          </option>
+          <option
+            value={3}
+          >
+            Dan Wahlin
+          </option>
+        </select>
+        
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-md-6 mb-3"
+      >
+        <label
+          htmlFor="category"
+        >
+          Category
+        </label>
+        <input
+          className="form-control "
+          id="category"
+          name="category"
+          onChange={[MockFunction]}
+          placeholder="Category"
+          type="text"
+          value="JavaScript"
+        />
+        
+      </div>
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Should set button text to 'Saving...' when saving is true 1`] = `
+<div>
+  <h1>
+    Edit 
+     course
+  </h1>
+  <form
+    onSubmit={[MockFunction]}
+  >
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-md-6 mb-3"
+      >
+        <label
+          htmlFor="title"
+        >
+          Course Name
+        </label>
+        <input
+          className="form-control "
+          id="title"
+          name="title"
+          onChange={[MockFunction]}
+          placeholder="Course Name"
+          type="text"
+          value="React: The Big Picture"
+        />
+        
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-md-6 mb-3"
+      >
+        <label
+          htmlFor="authorId"
+        >
+          Author
+        </label>
+        <select
+          className="form-control "
+          id="authorId"
+          name="authorId"
+          onChange={[MockFunction]}
+          value={1}
+        >
+          <option
+            value=""
+          >
+            -Please select one-
+          </option>
+          <option
+            value={1}
+          >
+            Cory House
+          </option>
+          <option
+            value={2}
+          >
+            Scott Allen
+          </option>
+          <option
+            value={3}
+          >
+            Dan Wahlin
+          </option>
+        </select>
+        
+      </div>
+    </div>
+    <div
+      className="form-group"
+    >
+      <div
+        className="col-md-6 mb-3"
+      >
+        <label
+          htmlFor="category"
+        >
+          Category
+        </label>
+        <input
+          className="form-control "
+          id="category"
+          name="category"
+          onChange={[MockFunction]}
+          placeholder="Category"
+          type="text"
+          value="JavaScript"
+        />
+        
+      </div>
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={true}
+      type="submit"
+    >
+      Saving...
+    </button>
+  </form>
+</div>
+`;
