@@ -39,6 +39,7 @@ function CourseFormComponent({
     name: "authorId",
     error: errors.authorId || ""
   };
+
   return (
     <div>
       {errors.server && errors.server.message && (

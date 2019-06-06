@@ -13,8 +13,7 @@ class CourseListComponent extends React.Component {
   }
 
   render() {
-    const courses = this.props.courses;
-    const loading = this.props.loading;
+    const { loading, courses, handleDeleteCourse } = this.props;
     return (
       <div>
         <div className="row">
@@ -60,6 +59,7 @@ class CourseListComponent extends React.Component {
                           <th>Title</th>
                           <th>Author</th>
                           <th>Category</th>
+                          <th />
                         </tr>
                       </thead>
                       <tbody>
@@ -85,6 +85,17 @@ class CourseListComponent extends React.Component {
                               </td>
                               <td>{course.authorName}</td>
                               <td>{course.category}</td>
+                              <td>
+                                <a
+                                  type="button"
+                                  onClick={() => {
+                                    handleDeleteCourse(course.id);
+                                  }}
+                                  className="btn btn-danger"
+                                >
+                                  Delete
+                                </a>
+                              </td>
                             </tr>
                           );
                         })}
@@ -104,7 +115,8 @@ class CourseListComponent extends React.Component {
 CourseListComponent.propTypes = {
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  handleDeleteCourse: PropTypes.func.isRequired
 };
 
 export default CourseListComponent;

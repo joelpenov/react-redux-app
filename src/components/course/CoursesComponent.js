@@ -4,10 +4,17 @@ import { connect } from "react-redux";
 import * as courseActions from "../../redux/actions/courseActions";
 import * as authorActions from "../../redux/actions/authorActions";
 import { bindActionCreators } from "redux";
+import { toast } from "react-toastify";
 
 import CourseListComponent from "./CourseListComponent";
 
 class CoursesComponent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleDeleteCourse = this.handleDeleteCourse.bind(this);
+  }
+
   componentDidMount() {
     const necessaryLoad = [];
 
@@ -22,6 +29,13 @@ class CoursesComponent extends React.Component {
     });
   }
 
+  handleDeleteCourse(courseId) {
+    toast.success("Course deleted successfully.");
+    this.props.actions.deleteCourse(courseId).catch(error => {
+      toast.error("There was an error deleting the course. " + error);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -29,6 +43,7 @@ class CoursesComponent extends React.Component {
           courses={this.props.courses}
           authors={this.props.authors}
           loading={this.props.loading}
+          handleDeleteCourse={this.handleDeleteCourse}
         />
       </div>
     );
