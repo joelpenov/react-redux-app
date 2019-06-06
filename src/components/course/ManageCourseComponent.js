@@ -84,7 +84,7 @@ function ManageCourseComponent({
     };
 
     setCourse(newCourse);
-    isValidForm();
+    setErrors({ [name]: "" });
   }
 
   const { loading } = noDestructuedProps;
