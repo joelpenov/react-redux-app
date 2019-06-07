@@ -15,7 +15,7 @@ const newCourse = {
   category: ""
 };
 
-function ManageCourseComponent({
+export function ManageCourseComponent({
   authors,
   courses,
   loadAuthors,
