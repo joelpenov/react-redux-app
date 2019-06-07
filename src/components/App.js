@@ -5,6 +5,7 @@ import AboutComponent from "./about/About";
 import NavBarComponent from "./header/NavBar";
 import NotFoundComponent from "./error/NotFound";
 import CoursesComponent from "./course/CoursesComponent";
+// eslint-disable-next-line import/no-named-as-default
 import ManageCourseComponent from "./course/ManageCourseComponent";
 import { ToastContainer } from "react-toastify";
 

@@ -4,9 +4,15 @@
   "scripts": {
     "start": "run-p start:dev start:api",
     "start:api": "node fakeApi/apiServer.js",
-    "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 1985",
+    "start:dev": "webpack-dev-server --config webpackConfig/webpack.config.dev.js --port 1985",
     "prestart:api": "node fakeApi/createMockDb.js",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "clean:build": "rimraf ./build && mkdir build",
+    "test:ci": "jest",
+    "prebuild": "run-p clean:build test:ci",
+    "build": "webpack --config webpackConfig/webpack.config.prod.js",
+    "postbuild": "run-p start:api serve:build",
+    "serve:build": "http-server ./build"
   },
   "jest": {
     "setupFiles": [
